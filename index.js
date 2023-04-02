@@ -20,12 +20,12 @@ inquirer.prompt([
   {
     type: 'input',
     message: 'Please type a color for the text:',
-    name: 'color',
+    name: 'textColor',
     //validate method to check if entry is a valid hex code
-    validate: (color) => {
+    validate: (textColor) => {
       //Regular expression to validate hex code entry
       const hex = new RegExp('^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$');
-      if (!hex.test(color)) {
+      if (!hex.test(textColor)) {
         return false;
       } 
       return true;
@@ -38,6 +38,21 @@ inquirer.prompt([
     name: 'shapes',
     choices: ['circle, triangle, and square'],
   },
+  //prompt for color keyword or hex code for shape
+  {
+    type: 'input',
+    message: 'Please type a color for the text:',
+    name: 'logoColor',
+    //validate method to check if entry is a valid hex code
+    validate: (logoColor) => {
+      //Regular expression to validate hex code entry
+      const hex = new RegExp('^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$');
+      if (!hex.test(logoColor)) {
+        return false;
+      } 
+      return true;
+    }
+  },
 ])
 .then((response) => {
 console.log(response)
@@ -49,5 +64,9 @@ svgBuilder(response)
   //output file called logo.svg
   //largest size is a 300x300 image
 function svgBuilder(response) {
-
+  //svg call for logoText
+  //svg call for text color selection
+  //svg call for shape selection
+  //svg call for shape color selection
+  //filesystem call for svg file creation
 }
