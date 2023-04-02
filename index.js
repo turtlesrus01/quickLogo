@@ -31,16 +31,23 @@ inquirer.prompt([
       return true;
     }
   },
+  //prompt for which shape (circle, triangle, and square)
+  {
+    type: 'list',
+    message: 'What characters will be included in you logo? (Up to 3)',
+    name: 'shapes',
+    choices: ['circle, triangle, and square'],
+  },
 ])
 .then((response) => {
 console.log(response)
-
+svgBuilder(response)
 })
 .catch((err) => console.log(err));
 
-
-//prompt for which shape (circle, triangle, and square)
 //function for SVG generation 
-//output file called logo.svg
-//largest size is a 300x300 image
+  //output file called logo.svg
+  //largest size is a 300x300 image
+function svgBuilder(response) {
 
+}
