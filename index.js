@@ -1,5 +1,6 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
+import { SVG, extend as SVGextend, Element as SVGElement } from '@svgdotjs/svg.js'
 
 //function for inquirer prompts 
 inquirer.prompt([
@@ -15,6 +16,15 @@ inquirer.prompt([
       return true;
     }
   },
+  //prompt for color keyword or hex code 
+  {
+    type: 'list',
+    message: 'Please select a color:',
+    name: 'color',
+    choices: [
+
+    ]
+  },
 ])
 .then((response) => {
 console.log(response)
@@ -22,7 +32,7 @@ console.log(response)
 })
 .catch((err) => console.log(err));
 
-//prompt for color keyword or hex code 
+
 //prompt for which shape (circle, triangle, and square)
 //function for SVG generation 
 //output file called logo.svg
