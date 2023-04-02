@@ -1,6 +1,6 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
-import { SVG, extend as SVGextend, Element as SVGElement } from '@svgdotjs/svg.js'
+const { SVG, extend: SVGextend, Element : SVGElement} = require('@svgdotjs/svg.js');
 
 //function for inquirer prompts 
 inquirer.prompt([
@@ -16,14 +16,20 @@ inquirer.prompt([
       return true;
     }
   },
-  //prompt for color keyword or hex code 
+  //prompt for color keyword or hex code for text
   {
-    type: 'list',
-    message: 'Please select a color:',
+    type: 'input',
+    message: 'Please type a color for the text:',
     name: 'color',
-    choices: [
-
-    ]
+    //validate method to check if entry is a valid hex code
+    validate: (color) => {
+      //Regular expression to validate hex code entry
+      const hex = new RegExp('^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$');
+      if (!hex.test(color)) {
+        return false;
+      } 
+      return true;
+    }
   },
 ])
 .then((response) => {
