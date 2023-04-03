@@ -9,6 +9,7 @@ inquirer.prompt([
     type: 'input',
     message: 'What characters will be included in you logo? (Up to 3)',
     name: 'logoText',
+    //validate method to check if entry complies with limitation
     validate: (logoText) => {
       if (logoText.length > 3) {
         return 'Please enter up to three characters only.';
@@ -34,9 +35,9 @@ inquirer.prompt([
   //prompt for which shape (circle, triangle, and square)
   {
     type: 'list',
-    message: 'What characters will be included in you logo? (Up to 3)',
+    message: 'What shape do you want to use in your logo?',
     name: 'shapes',
-    choices: ['circle, triangle, and square'],
+    choices: ['circle', 'triangle', 'square'],
   },
   //prompt for color keyword or hex code for shape
   {
@@ -64,7 +65,14 @@ svgBuilder(response)
   //output file called logo.svg
   //largest size is a 300x300 image
 function svgBuilder(response) {
+  //init variables 
+  const prompts = response;
+  const draw = SVG();
+  const logoBatch = draw.group();
+  //call for creating the document
+  logoBatch.size('300px', '300px').fill('white');
   //svg call for logoText
+  logoBatch.rect(100, 100).move(100, 50).fill(prompts.logoColor)
   //svg call for text color selection
   //svg call for shape selection
   //svg call for shape color selection
