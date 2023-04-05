@@ -108,10 +108,9 @@ function svgBuilder(response) {
       break;
     case "circle":
       svg.append('circle')
-      .attr("x", '0')
-      .attr("y", '0')
-      .attr('width', 300)
-      .attr('height', 300)
+      .attr("cx", '150')
+      .attr("cy", '150')
+      .attr('r', 150)
       .style('fill', prompts.shapeColor);
       break;
   };
