@@ -78,14 +78,24 @@ function svgBuilder(response) {
   //init variables
   const prompts = response;
   const body = d3.select(Dom.window.document.querySelector("body"));
-  let draw = SVG().addTo(body);
-  const logoBatch = draw.group();
+  let svg = body.append('svg')
+    .attr('width', 100)
+    .attr('height', 100)
+    .attr('xmlns', 'http://www.w3.org/2000/svg');
+
+  //const logoBatch = draw.group();
   //call for creating the document
-  logoBatch.size("300px", "300px").fill("white");
+  //logoBatch.size("300px", "300px").fill("white");
   //svg call for shape selection and shape color selection
   switch (prompts.shapes) {
     case "square":
-      logoBatch.rect(100, 100).move(100, 50).fill(prompts.textColor);
+      //logoBatch.rect(100, 100).move(100, 50).fill(prompts.textColor);
+      svg.append('rect')
+      .attr("x", 10)
+      .attr("y", 10)
+      .attr('width', 80)
+      .attr('height', 80)
+      .style('fill', prompts.shapeColor);
       break;
     case "triangle":
       logoBatch.rect().move(100, 50).fill(prompts.textColor);
@@ -93,18 +103,17 @@ function svgBuilder(response) {
     case "circle":
       logoBatch.circle(100).move(100, 50).fill(prompts.textColor);
       break;
-  }
+  };
 
   //svg call for text and text color selection
-  logoBatch
+  svg.append('text')
     .text(prompts.logoText)
-    .font({ size: 80, anchor: "middle", leading: 1.2 })
-    .fill(prompts.textColor)
-    .move(150, 140);
+    .style('font-family', 'serif')
+    .style('fill', prompts.textColor);
 
   //Send batch text to draw element
-  draw.append(logoBatch);
+  //draw.append(logoBatch);
   //filesystem call for svg file creation
-  const svgStr = draw.svg();
-  fs.writeFileSync("logo.svg", svgStr);
+  //const svgStr = draw.svg();
+  fs.writeFileSync("logo.svg", body.html());
 }
