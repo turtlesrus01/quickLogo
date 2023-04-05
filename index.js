@@ -80,7 +80,7 @@ function svgBuilder(response) {
   const body = d3.select(Dom.window.document.querySelector("body"));
   let svg = body.append('svg')
     .attr('width', 300)
-    .attr('height', 300)
+    .attr('height', 200)
     .attr('xmlns', 'http://www.w3.org/2000/svg');
 
   //call for creating the document
@@ -91,7 +91,7 @@ function svgBuilder(response) {
       .attr("x", '0')
       .attr("y", '0')
       .attr('width', 300)
-      .attr('height', 300)
+      .attr('height', 200)
       .style('fill', prompts.shapeColor);
       break;
     case "triangle":
@@ -100,14 +100,14 @@ function svgBuilder(response) {
       .attr("y", '0')
       .attr('width', 300)
       .attr('height', 300)
-      .attr('points', '150,0 0,300 300,300')
+      .attr('points', '150,0 0,200 300,200')
       .style('fill', prompts.shapeColor);
       break;
     case "circle":
       svg.append('circle')
       .attr("cx", '150')
-      .attr("cy", '150')
-      .attr('r', 150)
+      .attr("cy", '100')
+      .attr('r', 75)
       .style('fill', prompts.shapeColor);
       break;
   };
@@ -116,12 +116,13 @@ function svgBuilder(response) {
   svg.append('text')
     .text(prompts.logoText)
     .attr("x", '50%')
-    .attr("y", '50%')
+    .attr("y", '52%')
     .attr('width', 80)
     .attr('height', 80)
+    .attr('font-size', '4em')
     .attr("dominant-baseline", "middle")
     .attr("text-anchor", "middle")
-    .style('font-family', 'serif')
+    .style('font-family', 'sans-serif')
     .style('fill', prompts.textColor);
 
   //filesystem call for svg file creation
