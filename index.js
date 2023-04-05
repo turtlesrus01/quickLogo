@@ -79,8 +79,8 @@ function svgBuilder(response) {
   const prompts = response;
   const body = d3.select(Dom.window.document.querySelector("body"));
   let svg = body.append('svg')
-    .attr('width', 100)
-    .attr('height', 100)
+    .attr('width', 300)
+    .attr('height', 300)
     .attr('xmlns', 'http://www.w3.org/2000/svg');
 
   //const logoBatch = draw.group();
@@ -91,23 +91,40 @@ function svgBuilder(response) {
     case "square":
       //logoBatch.rect(100, 100).move(100, 50).fill(prompts.textColor);
       svg.append('rect')
-      .attr("x", 10)
-      .attr("y", 10)
-      .attr('width', 80)
-      .attr('height', 80)
+      .attr("x", '0')
+      .attr("y", '0')
+      .attr('width', 300)
+      .attr('height', 300)
       .style('fill', prompts.shapeColor);
       break;
     case "triangle":
-      logoBatch.rect().move(100, 50).fill(prompts.textColor);
+      svg.append('polygon')
+      .attr("x", '0')
+      .attr("y", '0')
+      .attr('width', 300)
+      .attr('height', 300)
+      .attr('points', '150,0 0,300 300,300')
+      .style('fill', prompts.shapeColor);
       break;
     case "circle":
-      logoBatch.circle(100).move(100, 50).fill(prompts.textColor);
+      svg.append('circle')
+      .attr("x", '0')
+      .attr("y", '0')
+      .attr('width', 300)
+      .attr('height', 300)
+      .style('fill', prompts.shapeColor);
       break;
   };
 
   //svg call for text and text color selection
   svg.append('text')
     .text(prompts.logoText)
+    .attr("x", '50%')
+    .attr("y", '50%')
+    .attr('width', 80)
+    .attr('height', 80)
+    .attr("dominant-baseline", "middle")
+    .attr("text-anchor", "middle")
     .style('font-family', 'serif')
     .style('fill', prompts.textColor);
 
