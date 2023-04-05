@@ -83,13 +83,10 @@ function svgBuilder(response) {
     .attr('height', 300)
     .attr('xmlns', 'http://www.w3.org/2000/svg');
 
-  //const logoBatch = draw.group();
   //call for creating the document
-  //logoBatch.size("300px", "300px").fill("white");
   //svg call for shape selection and shape color selection
   switch (prompts.shapes) {
     case "square":
-      //logoBatch.rect(100, 100).move(100, 50).fill(prompts.textColor);
       svg.append('rect')
       .attr("x", '0')
       .attr("y", '0')
@@ -127,9 +124,6 @@ function svgBuilder(response) {
     .style('font-family', 'serif')
     .style('fill', prompts.textColor);
 
-  //Send batch text to draw element
-  //draw.append(logoBatch);
   //filesystem call for svg file creation
-  //const svgStr = draw.svg();
   fs.writeFileSync("logo.svg", body.html());
 }
