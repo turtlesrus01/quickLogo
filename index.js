@@ -2,11 +2,6 @@ import fs from "fs";
 import inquirer from "inquirer";
 import { JSDOM } from "jsdom";
 import * as d3 from "d3";
-import {
-  SVG,
-  extend as SVGextend,
-  Element as SVGElement,
-} from "@svgdotjs/svg.js";
 
 //function for inquirer prompts
 inquirer
@@ -77,13 +72,13 @@ const Dom = new JSDOM(`<!DOCTYPE html><body></body>`);
 function svgBuilder(response) {
   //init variables
   const prompts = response;
+  //call for creating the document
   const body = d3.select(Dom.window.document.querySelector("body"));
   let svg = body.append('svg')
     .attr('width', 300)
     .attr('height', 200)
     .attr('xmlns', 'http://www.w3.org/2000/svg');
 
-  //call for creating the document
   //svg call for shape selection and shape color selection
   switch (prompts.shapes) {
     case "square":
