@@ -2,6 +2,7 @@ import fs from "fs";
 import inquirer from "inquirer";
 import { JSDOM } from "jsdom";
 import * as d3 from "d3";
+import colors from 'color-name';
 
 //function for inquirer prompts
 inquirer
@@ -28,7 +29,12 @@ inquirer
       validate: (textColor) => {
         //Regular expression to validate hex code entry
         const hex = new RegExp("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$");
-        if (!hex.test(textColor)) {
+        //to check for valid hex code
+        const isHexCode = hex.test(textColor)
+        //to check for valid color name
+        const isColorName = textColor in colors;
+        //if statement to validate input
+        if (!isHexCode && !isColorName) {
           return false;
         }
         return true;
@@ -50,7 +56,12 @@ inquirer
       validate: (shapeColor) => {
         //Regular expression to validate hex code entry
         const hex = new RegExp("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$");
-        if (!hex.test(shapeColor)) {
+        //to check for valid hex code
+        const isHexCode = hex.test(shapeColor)
+        //to check for valid color name
+        const isColorName = shapeColor in colors;
+        //if statement to validate input
+        if (!isHexCode && !isColorName) {
           return false;
         }
         return true;
