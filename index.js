@@ -61,7 +61,10 @@ inquirer
     console.log(response);
     svgBuilder(response);
   })
-  .catch((err) => console.log(err));
+  .catch((err) => {
+    console.log(err); 
+    console.log('An error occurred.');
+  });
 
 //init dom from jsdom
 const Dom = new JSDOM(`<!DOCTYPE html><body></body>`);
